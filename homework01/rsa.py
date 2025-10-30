@@ -1,3 +1,5 @@
+"""RSA ШИФР"""
+
 import random
 import typing as tp
 
@@ -25,6 +27,7 @@ def is_prime(n: int) -> bool:
         d += 2
     return True
 
+
 def gcd(a: int, b: int) -> int:
     """
     Euclid's algorithm for determining the greatest common divisor.
@@ -45,13 +48,13 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     >>> multiplicative_inverse(7, 40)
     23
     """
-    old_r, r = e, phi
-    old_s, s = 1, 0
+    r_1, r = e, phi
+    s_1, s = 1, 0
     while r != 0:
-        q = old_r // r
-        old_r, r = r, old_r - q * r
-        old_s, s = s, old_s - q * s
-    return old_s % phi
+        q = r_1 // r
+        r_1, r = r, r_1 - q * r
+        s_1, s = s, s_1 - q * s
+    return s_1 % phi
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
@@ -94,7 +97,7 @@ def decrypt(pk: tp.Tuple[int, int], ciphertext: tp.List[int]) -> str:
     # Unpack the key into its components
     key, n = pk
     # Generate the plaintext based on the ciphertext and key using a^b mod m
-    plain = [chr((char ** key) % n) for char in ciphertext]
+    plain = [chr((char**key) % n) for char in ciphertext]
     # Return the array of bytes as a string
     return "".join(plain)
 
