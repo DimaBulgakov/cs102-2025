@@ -16,7 +16,7 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     ciphertext = ""
     alphabet = ord("Z") - ord("A") + 1
     for char in plaintext:
-        if char.isalpha():
+        if 65 <= ord(char) <= 90 or 97 <= ord(char) <= 122:
             if char.isupper():
                 base = ord("A")
             else:
@@ -43,7 +43,7 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     plaintext = ""
     alphabet = ord("Z") - ord("A") + 1
     for char in ciphertext:
-        if char.isalpha():
+        if 65 <= ord(char) <= 90 or 97 <= ord(char) <= 122:
             if char.isupper():
                 base = ord("A")
             else:
