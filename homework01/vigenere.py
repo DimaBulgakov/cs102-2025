@@ -16,7 +16,7 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     alphabet = ord("Z") - ord("A") + 1
 
     for i, char in enumerate(plaintext):
-        if char.isalpha():
+        if 65 <= ord(char) <= 90 or 97 <= ord(char) <= 122:
             key_char = keyword[i % len(keyword)]
             shift = ord(key_char) - ord("A")
             if char.isupper():
@@ -44,7 +44,7 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     keyword = keyword.upper()
     alphabet = ord("Z") - ord("A") + 1
     for i, char in enumerate(ciphertext):
-        if char.isalpha():
+        if 65 <= ord(char) <= 90 or 97 <= ord(char) <= 122:
             key_char = keyword[i % len(keyword)]
             shift = ord(key_char) - ord("A")
             if char.isupper():
