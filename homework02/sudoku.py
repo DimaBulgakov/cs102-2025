@@ -1,5 +1,6 @@
 import pathlib
 import typing as tp
+import random
 
 T = tp.TypeVar("T")
 
@@ -7,7 +8,7 @@ T = tp.TypeVar("T")
 def read_sudoku(path: tp.Union[str, pathlib.Path]) -> tp.List[tp.List[str]]:
     """ Прочитать Судоку из указанного файла """
     path = pathlib.Path(path)
-    with path.open() as f:
+    with path.open  () as f:
         puzzle = f.read()
     return create_grid(puzzle)
 
@@ -41,7 +42,10 @@ def group(values: tp.List[T], n: int) -> tp.List[tp.List[T]]:
     >>> group([1,2,3,4,5,6,7,8,9], 3)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     """
-    pass
+    groups = []
+    for i in range(0, len(values), n):
+        groups.append(values[i: i + n])
+    return groups
 
 
 def get_row(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str]:
